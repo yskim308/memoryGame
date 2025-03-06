@@ -8,3 +8,9 @@ export interface CardProps {
   card: CardObject;
   handleClick: (card: CardObject) => void;
 }
+
+export interface GiphyObject {
+  id: string;
+  url: string;
+  title: string;
+}
