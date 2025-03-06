@@ -36,4 +36,6 @@ function shuffleCards(cards: CardObject[]) {
     // Swap elements at indices i and j
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
+
+  return shuffled;
 }
