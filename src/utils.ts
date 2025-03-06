@@ -1,9 +1,7 @@
 import { CardObject, GiphyObject } from "./types";
+export { getGifs, shuffleCards };
 
-export default async function getGifs(
-  search: string,
-  gifs: string,
-): Promise<CardObject[]> {
+async function getGifs(search: string, gifs: string): Promise<CardObject[]> {
   const key = "srJ0aPiyv8XaGUvreaq3c50dSFOujB1C";
   const q = search;
   const limit = gifs;
@@ -26,5 +24,16 @@ export default async function getGifs(
     return [];
   } finally {
     console.log("all done");
+  }
+}
+
+function shuffleCards(cards: CardObject[]) {
+  const shuffled = [...cards];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    // Generate a random index between 0 and i (inclusive)
+    const j = Math.floor(Math.random() * (i + 1));
+
+    // Swap elements at indices i and j
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 }
