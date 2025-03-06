@@ -1,9 +1,12 @@
 import { CardObject, GiphyObject } from "./types";
 
-export default async function getGifs(): Promise<CardObject[]> {
+export default async function getGifs(
+  search: string,
+  gifs: string,
+): Promise<CardObject[]> {
   const key = "srJ0aPiyv8XaGUvreaq3c50dSFOujB1C";
-  const q = "cats";
-  const limit = "20";
+  const q = search;
+  const limit = gifs;
   const cardArray: CardObject[] = [];
   try {
     const response = await fetch(
