@@ -1,7 +1,7 @@
 export interface CardObject {
   url: string;
   desc: string;
-  id: number;
+  id: string;
 }
 
 export interface CardProps {
