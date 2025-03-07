@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CardObject } from "./types";
-import getGifs, { shuffleCards } from "./utils";
+import { shuffleCards, getGifs } from "./utils";
+import Card from "./Card";
 const MAX_CARDS = 20;
 
 export default function App() {
@@ -36,5 +37,11 @@ export default function App() {
     }
   };
 
-  return ()
+  return (
+    <div>
+      {cardArray.map((card) => {
+        return <Card handleClick={onCardClick} card={card} />;
+      })}
+    </div>
+  );
 }
