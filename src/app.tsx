@@ -40,7 +40,7 @@ export default function App() {
   return (
     <div>
       {cardArray.map((card) => {
-        return <Card handleClick={onCardClick} card={card} />;
+        return <Card handleClick={onCardClick} card={card} key={card.id} />;
       })}
     </div>
   );
