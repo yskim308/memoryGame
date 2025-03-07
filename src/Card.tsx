@@ -7,7 +7,7 @@ export default function Card({ card, handleClick }: CardProps) {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`font-bold ${hovered ? "bg-red-500" : ""}`}
+      className={`font-bold m-3 ${hovered ? "bg-red-500" : ""}`}
       onClick={() => handleClick(card)}
     >
       <img src={card.url} alt="url is fucked?" />
