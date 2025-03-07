@@ -1,19 +1,26 @@
 import { CardObject, GiphyObject } from "./types";
 export { getGifs, shuffleCards };
 
-async function getGifs(search: string, gifs: string): Promise<CardObject[]> {
+async function getGifs(
+  search: string,
+  gifNumber: string,
+): Promise<CardObject[]> {
   const key = "srJ0aPiyv8XaGUvreaq3c50dSFOujB1C";
   const q = search;
-  const limit = gifs;
+  const limit = gifNumber;
   const cardArray: CardObject[] = [];
   try {
     const response = await fetch(
       `https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${q}&limit=${limit}`,
+      {
+        mode: "cors",
+      },
     );
-    const gifs: GiphyObject[] = await response.json();
-    gifs.map((gif) => {
+    const gifs: GiphyObject = await response.json();
+    console.log(gifs.data[0].images.original.url);
+    gifs.data.map((gif) => {
       cardArray.push({
-        url: gif.url,
+        url: gif.images.original.url,
         id: gif.id,
         desc: gif.title,
       });
