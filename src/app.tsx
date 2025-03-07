@@ -40,9 +40,12 @@ export default function App() {
 
   return (
     <div>
-      {cardArray.map((card) => {
-        return <Card handleClick={onCardClick} card={card} key={card.id} />;
-      })}
+      <h1>Memory Game!</h1>
+      <div className="grid grid-cols-10 grid-row-2">
+        {cardArray.map((card) => {
+          return <Card handleClick={onCardClick} card={card} key={card.id} />;
+        })}
+      </div>
     </div>
   );
 }

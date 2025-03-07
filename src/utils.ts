@@ -17,7 +17,6 @@ async function getGifs(
       },
     );
     const gifs: GiphyObject = await response.json();
-    console.log(gifs.data[0].images.original.url);
     gifs.data.map((gif) => {
       cardArray.push({
         url: gif.images.original.url,
