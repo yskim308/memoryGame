@@ -8,9 +8,10 @@ export default function Card({ card, handleClick }: CardProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={`font-bold m-3 ${hovered ? "bg-red-500" : ""}`}
-      onClick={() => handleClick(card)}
     >
-      <img src={card.url} alt="url is fucked?" />
+      <div className="aspect-square" onClick={() => handleClick(card)}>
+        <img src={card.url} alt="url is fucked?" className="w-full h-full" />
+      </div>
       <h1>{card.desc}</h1>
     </div>
   );
