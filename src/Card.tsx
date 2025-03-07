@@ -10,7 +10,7 @@ export default function Card({ card, handleClick }: CardProps) {
       className={`font-bold ${hovered ? "bg-red-500" : ""}`}
       onClick={() => handleClick(card)}
     >
-      <img src={card.url} alt="fuk?" />
+      <img src={card.url} alt="url is fucked?" />
       <h1>{card.desc}</h1>
     </div>
   );
