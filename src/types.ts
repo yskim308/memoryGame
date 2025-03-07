@@ -10,7 +10,13 @@ export interface CardProps {
 }
 
 export interface GiphyObject {
-  id: string;
-  url: string;
-  title: string;
+  data: {
+    id: string;
+    title: string;
+    images: {
+      original: {
+        url: string;
+      };
+    };
+  }[];
 }
