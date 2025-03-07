@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CardObject } from "./types";
 import { shuffleCards, getGifs } from "./utils";
-import Card from "./Card";
+import Card from "./components/Card";
 const MAX_CARDS = 20;
 
 export default function App() {

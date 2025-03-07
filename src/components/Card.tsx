@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CardObject, CardProps } from "./types";
+import { CardObject, CardProps } from "../types";
 
 export default function Card({ card, handleClick }: CardProps) {
   const [hovered, setHovered] = useState<boolean>(false);
