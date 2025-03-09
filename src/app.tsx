@@ -49,7 +49,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="bg-zinc-50 flex flex-col items-center justify-center">
       <Header />
       <GameHeader count={gameCount} />
       {isGameOver && <GameOver />}
