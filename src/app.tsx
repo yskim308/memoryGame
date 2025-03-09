@@ -46,11 +46,11 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <h1>Memory Game!</h1>
       <GameHeader count={gameCount} />
       {isGameOver && <GameOver />}
-      <div className="grid grid-cols-10 grid-row-2">
+      <div className="grid h-100 lg:grid-cols-10 lg:grid-row-2 lg:w-4/5 md:grid-cols-5 md:grid-row-4 md:w-5/6 sm:grid-cols-2 sm:grid-row-10">
         {cardArray.map((card) => {
           return <Card handleClick={onCardClick} card={card} key={card.id} />;
         })}
