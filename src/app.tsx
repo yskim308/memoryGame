@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CardObject } from "./types";
 import { shuffleCards, getGifs } from "./utils";
 import Card from "./components/Card";
+import { Footer, GameHeader } from "./components/Layout";
 const MAX_CARDS = 20;
 
 export default function App() {
@@ -41,11 +42,13 @@ export default function App() {
   return (
     <div>
       <h1>Memory Game!</h1>
+      <GameHeader count={gameCount} />
       <div className="grid grid-cols-10 grid-row-2">
         {cardArray.map((card) => {
           return <Card handleClick={onCardClick} card={card} key={card.id} />;
         })}
       </div>
+      <Footer />
     </div>
   );
 }
