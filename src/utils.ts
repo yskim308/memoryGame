@@ -1,5 +1,6 @@
 import { CardObject, GiphyObject } from "./types";
 export { getGifs, shuffleCards };
+import defaultData from "./default.json";
 
 async function getGifs(
   search: string,
@@ -16,15 +17,15 @@ async function getGifs(
         mode: "cors",
       },
     );
-    const gifs: GiphyObject = await response.json();
-    console.log(gifs);
-    gifs.data.map((gif) => {
-      cardArray.push({
-        url: gif.images.original.url,
-        id: gif.id,
-        desc: gif.title,
-      });
-    });
+    if (!response.ok) {
+      alert(
+        "API request failed. The rate limit may have been exceeded. Using default data with 'cats' as the search query",
+      );
+      processJson(defaultData, cardArray);
+    } else {
+      const gifs: GiphyObject = await response.json();
+      processJson(gifs, cardArray);
+    }
     return cardArray;
   } catch (err) {
     console.log(err);
@@ -32,6 +33,16 @@ async function getGifs(
   } finally {
     console.log("all done");
   }
+}
+
+function processJson(gifs: GiphyObject, cardArray: CardObject[]) {
+  gifs.data.map((gif) => {
+    cardArray.push({
+      url: gif.images.original.url,
+      id: gif.id,
+      desc: gif.title,
+    });
+  });
 }
 
 function shuffleCards(cards: CardObject[]) {
