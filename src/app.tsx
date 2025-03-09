@@ -25,6 +25,9 @@ export default function App() {
       setClickedCards([]);
       setGameCount(0);
       setIsGameOver(true);
+      setTimeout(() => {
+        setIsGameOver(false);
+      }, 1000);
       const shuffled: CardObject[] = shuffleCards(cardArray);
       setCardArray(shuffled);
     } else {
@@ -46,6 +49,7 @@ export default function App() {
     <div>
       <h1>Memory Game!</h1>
       <GameHeader count={gameCount} />
+      {isGameOver && <GameOver />}
       <div className="grid grid-cols-10 grid-row-2">
         {cardArray.map((card) => {
           return <Card handleClick={onCardClick} card={card} key={card.id} />;
