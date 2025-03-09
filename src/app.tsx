@@ -15,7 +15,6 @@ export default function App() {
   useEffect(() => {
     getGifs("cats", `${MAX_CARDS}`).then((resolvedCardArray: CardObject[]) => {
       setCardArray(resolvedCardArray);
-      console.log(cardArray);
     });
   }, []);
 
