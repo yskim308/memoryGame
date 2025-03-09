@@ -3,6 +3,7 @@ import { CardObject } from "./types";
 import { shuffleCards, getGifs } from "./utils";
 import Card from "./components/Card";
 import { Footer, GameHeader } from "./components/Layout";
+import GameOver from "./components/GameOver";
 const MAX_CARDS = 20;
 
 export default function App() {
@@ -24,6 +25,8 @@ export default function App() {
       setClickedCards([]);
       setGameCount(0);
       setIsGameOver(true);
+      const shuffled: CardObject[] = shuffleCards(cardArray);
+      setCardArray(shuffled);
     } else {
       if (gameCount == MAX_CARDS - 1) {
         // todo: the logic should be seperated from generic game over if the user actually wins
