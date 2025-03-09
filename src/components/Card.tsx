@@ -10,11 +10,14 @@ export default function Card({ card, handleClick }: CardProps) {
       className="m-1"
     >
       <div
-        className={`aspect-square w-auto p-2 ${hovered ? "bg-red-500" : ""}`}
+        className={`rounded-3xl aspect-square w-auto p-2 ${hovered ? "bg-zinc-200" : ""}`}
         onClick={() => handleClick(card)}
       >
-        <img src={card.url} alt="url is fucked?" className="w-full h-full" />
-        <p className="text-xs hidden lg:block">{card.desc}</p>
+        <img
+          src={card.url}
+          alt="url is fucked?"
+          className="rounded-3xl w-full h-full"
+        />
       </div>
     </div>
   );
