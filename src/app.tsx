@@ -13,6 +13,7 @@ export default function App() {
   const [cardArray, setCardArray] = useState<CardObject[]>([]);
 
   useEffect(() => {
+    console.log("mounted? ");
     getGifs("cats", `${MAX_CARDS}`).then((resolvedCardArray: CardObject[]) => {
       setCardArray(resolvedCardArray);
     });
@@ -49,7 +50,7 @@ export default function App() {
       <h1>Memory Game!</h1>
       <GameHeader count={gameCount} />
       {isGameOver && <GameOver />}
-      <div className="grid lg:w-4/5 md:grid-cols-4 md:w-5/6 grid-cols-3">
+      <div className="grid lg:w-4/5 lg:grid-cols-5 md:grid-cols-4 md:w-5/6 grid-cols-3">
         {cardArray.map((card) => {
           return <Card handleClick={onCardClick} card={card} key={card.id} />;
         })}
