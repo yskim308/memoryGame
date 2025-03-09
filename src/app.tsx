@@ -50,7 +50,7 @@ export default function App() {
       <h1>Memory Game!</h1>
       <GameHeader count={gameCount} />
       {isGameOver && <GameOver />}
-      <div className="grid h-100 lg:grid-cols-10 lg:grid-row-2 lg:w-4/5 md:grid-cols-5 md:grid-row-4 md:w-5/6 sm:grid-cols-2 sm:grid-row-10">
+      <div className="grid lg:w-4/5 md:grid-cols-4 md:w-5/6 grid-cols-3">
         {cardArray.map((card) => {
           return <Card handleClick={onCardClick} card={card} key={card.id} />;
         })}
