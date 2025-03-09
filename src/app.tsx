@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CardObject } from "./types";
 import { shuffleCards, getGifs } from "./utils";
 import Card from "./components/Card";
-import { Footer, GameHeader } from "./components/Layout";
+import { Footer, GameHeader, Header } from "./components/Layout";
 import { GameWon, GameOver } from "./components/GameOver";
 const MAX_CARDS = 20;
 
@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1>Memory Game!</h1>
+      <Header />
       <GameHeader count={gameCount} />
       {isGameOver && <GameOver />}
       {isGameWon && <GameWon />}
