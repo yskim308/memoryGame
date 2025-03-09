@@ -22,12 +22,15 @@ function Footer() {
     <div className="mt-auto">
       <div className="flex">
         <div>
-          <a href="https://github.com/yskim308/memorygame">
+          <a href="https://github.com/yskim308/memorygame" target="none">
             <img className="w-8" src="./github.svg" />
           </a>
         </div>
         <div>
-          <a href="https://www.linkedin.com/in/young-seo-kim-464b11220/">
+          <a
+            href="https://www.linkedin.com/in/young-seo-kim-464b11220/"
+            target="none"
+          >
             <img className="w-8" src="./linkedin.svg" />
           </a>
         </div>
