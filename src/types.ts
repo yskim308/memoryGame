@@ -20,3 +20,7 @@ export interface GiphyObject {
     };
   }[];
 }
+
+export interface GameHeaderProps {
+  count: number;
+}
