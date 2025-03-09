@@ -11,7 +11,7 @@ function Header() {
 
 function GameHeader({ count }: GameHeaderProps) {
   return (
-    <div className="sticky top-0 bg-zinc-200 w-full text-center text-zinc-900">
+    <div className="sticky top-0 bg-zinc-200 w-full h-1/6 text-center text-zinc-900">
       <h1 className="font-bold text-lg">count: {count}</h1>
     </div>
   );
