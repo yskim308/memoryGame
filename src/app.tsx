@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CardObject } from "./types";
 import { shuffleCards, getGifs } from "./utils";
 import Card from "./components/Card";
-import { Footer, GameHeader, Header } from "./components/Layout";
+import { Footer, GameHeader, Header, SearchBar } from "./components/Layout";
 import { GameWon, GameOver } from "./components/GameOver";
 const MAX_CARDS = 20;
 
@@ -51,6 +51,7 @@ export default function App() {
   return (
     <div className="bg-zinc-50 flex flex-col items-center justify-center">
       <Header />
+      <SearchBar />
       <GameHeader count={gameCount} />
       {isGameOver && <GameOver />}
       {isGameWon && <GameWon />}

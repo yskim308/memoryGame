@@ -1,11 +1,45 @@
+import { useState } from "react";
 import { GameHeaderProps } from "../types";
-export { GameHeader, Footer, Header };
+export { GameHeader, Footer, Header, SearchBar };
 
 function Header() {
   return (
     <div className="text-5xl font-mono py-1 w-full text-center bg-zinc-200">
       Memory!
     </div>
+  );
+}
+
+function SearchBar() {
+  const [searchText, setSearchText] = useState<string>("");
+  const [queryRange, setQueryRange] = useState<number>(20);
+
+  return (
+    <form>
+      <label htmlFor="keyword">Keyword</label>
+      <input
+        type="text"
+        id="keyword"
+        name="keyword"
+        value={searchText}
+        onChange={(event) => {
+          setSearchText(event.target.value);
+        }}
+      ></input>
+
+      <label htmlFor="query">Number of TIles</label>
+      <input
+        type="range"
+        id="query"
+        name="query"
+        value={queryRange}
+        onChange={(event) => {
+          setQueryRange(parseInt(event.target.value, 10));
+        }}
+      ></input>
+
+      <button type="button">Sumbit</button>
+    </form>
   );
 }
 
