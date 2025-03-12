@@ -18,13 +18,9 @@ function SearchBar({ handleSubmit }: SearchBarProps) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    let newValue: string | number = value;
-    if (name === "limit") {
-      newValue = parseInt(value, 10);
-    }
     setSearchData({
       ...searchData,
-      [name]: newValue,
+      [name]: value,
     });
   };
 
