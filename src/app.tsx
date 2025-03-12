@@ -38,7 +38,7 @@ export default function App() {
       setIsGameOver(true);
       setTimeout(() => {
         setIsGameOver(false);
-      }, 2000);
+      }, 2500);
       const shuffled: CardObject[] = shuffleCards(cardArray);
       setCardArray(shuffled);
     } else if (gameCount == MAX_CARDS - 1) {
@@ -48,7 +48,7 @@ export default function App() {
       setIsGameWon(true);
       setTimeout(() => {
         setIsGameWon(false);
-      }, 2000);
+      }, 2500);
     } else {
       // continue playing the game
       const shuffled: CardObject[] = shuffleCards(cardArray);
