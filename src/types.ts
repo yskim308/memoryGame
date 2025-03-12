@@ -1,3 +1,5 @@
+import { FormEvent } from "react";
+
 export interface CardObject {
   url: string;
   desc: string;
@@ -23,4 +25,13 @@ export interface GiphyObject {
 
 export interface GameHeaderProps {
   count: number;
+}
+
+export interface SearchBarData {
+  query: string;
+  limit: number;
+}
+
+export interface SearchBarProps {
+  handleSubmit: (data: SearchBarData) => void;
 }
