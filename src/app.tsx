@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { CardObject } from "./types";
+import { FormEvent, useEffect, useState } from "react";
+import { CardObject, SearchBarData } from "./types";
 import { shuffleCards, getGifs } from "./utils";
 import Card from "./components/Card";
 import { Footer, GameHeader, Header, SearchBar } from "./components/Layout";
@@ -12,12 +12,22 @@ export default function App() {
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGameWon, setIsGameWon] = useState<boolean>(false);
   const [cardArray, setCardArray] = useState<CardObject[]>([]);
+  const [searchData, setSearchData] = useState<SearchBarData>();
 
   useEffect(() => {
-    getGifs("cats", `${MAX_CARDS}`).then((resolvedCardArray: CardObject[]) => {
-      setCardArray(resolvedCardArray);
-    });
-  }, []);
+    getGifs(searchData?.query || "cats", searchData?.limit || "20").then(
+      (resolvedCardArray: CardObject[]) => {
+        setCardArray(resolvedCardArray);
+      },
+    );
+  }, [searchData]);
+
+  const onSearchSubmit = (data: SearchBarData) => {
+    setSearchData(data);
+    setGameCount(0);
+    setClickedCards([]);
+    console.log(data);
+  };
 
   const onCardClick = (card: CardObject) => {
     const isClicked: boolean = clickedCards.includes(card.id) ? true : false;
@@ -51,7 +61,7 @@ export default function App() {
   return (
     <div className="bg-zinc-50 flex flex-col items-center justify-center">
       <Header />
-      <SearchBar />
+      <SearchBar handleSubmit={onSearchSubmit} />
       <GameHeader count={gameCount} />
       {isGameOver && <GameOver />}
       {isGameWon && <GameWon />}
