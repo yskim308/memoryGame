@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { GameHeaderProps, SearchBarData, SearchBarProps } from "../types";
 export { GameHeader, Footer, Header, SearchBar };
 
@@ -78,7 +78,9 @@ function SearchBar({ handleSubmit }: SearchBarProps) {
 function GameHeader({ count }: GameHeaderProps) {
   return (
     <div className="sticky top-0 bg-zinc-200 w-full h-1/6 text-center text-zinc-900">
-      <h1 className="font-bold text-lg">count: {count}</h1>
+      <h1 key={count} className="font-bold text-xl animate-jump">
+        count: {count}
+      </h1>
     </div>
   );
 }
