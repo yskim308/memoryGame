@@ -2,16 +2,20 @@ export { GameOver, GameWon };
 
 function GameOver() {
   return (
-    <div className="text-xl font-bold w-full bg-red-300 text-center">
-      <p>Game Over</p>
+    <div className="fixed inset-0 flex justify-center items-center">
+      <div className="flex bg-red-300 h-1/2 w-1/2  rounded-3xl justify-center items-center">
+        <p className="font-sans font-bold text-4xl">Game Over</p>
+      </div>
     </div>
   );
 }
 
 function GameWon() {
   return (
-    <div className="text-xl font-bold w-full bg-green-300 text-center">
-      <p>Game Won!</p>
+    <div className="fixed inset-0 flex justify-center items-center">
+      <div className="flex bg-green-300 h-1/2 w-1/2  rounded-3xl justify-center items-center">
+        <p className="font-sans font-bold text-4xl">Game Won</p>
+      </div>
     </div>
   );
 }
