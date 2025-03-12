@@ -29,7 +29,7 @@ export interface GameHeaderProps {
 
 export interface SearchBarData {
   query: string;
-  limit: number;
+  limit: string;
 }
 
 export interface SearchBarProps {
