@@ -32,18 +32,23 @@ function SearchBar({ handleSubmit }: SearchBarProps) {
     <div className="w-full flex justify-center bg-zinc-200">
       <form
         onSubmit={onSubmit}
-        className="flex justify-around items-center w-full md:w-1/2 lg:w-4/12 py-3"
+        className="flex flex-col justify-center items-center w-full md:w-1/2 lg:w-4/12 py-3"
       >
-        <input
-          type="text"
-          id="query"
-          name="query"
-          placeholder="Keyword"
-          autoComplete="off"
-          className="bg-zinc-100 rounded-lg w-30 md:w-40 p-1 mx-5 h-8"
-          value={searchData.query}
-          onChange={handleChange}
-        ></input>
+        <div className="flex">
+          <input
+            type="text"
+            id="query"
+            name="query"
+            placeholder="Keyword"
+            autoComplete="off"
+            className="bg-zinc-100 w-auto p-1 h-8 "
+            value={searchData.query}
+            onChange={handleChange}
+          ></input>
+          <button type="submit" className="bg-zinc-100">
+            <img src="./magnify.svg" className="w-7" />
+          </button>
+        </div>
 
         <div className="flex flex-col items-center">
           <label htmlFor="limit" className="font-semibold font-mono">
@@ -55,14 +60,11 @@ function SearchBar({ handleSubmit }: SearchBarProps) {
             name="limit"
             min="2"
             max="50"
-            className="w-30 lg:w-45"
+            className="w-auto"
             value={searchData.limit}
             onChange={handleChange}
           ></input>
         </div>
-        <button type="submit">
-          <img src="./magnify.svg" className="w-7" />
-        </button>
       </form>
     </div>
   );
