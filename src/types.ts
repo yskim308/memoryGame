@@ -1,5 +1,3 @@
-import { FormEvent } from "react";
-
 export interface CardObject {
   url: string;
   desc: string;
