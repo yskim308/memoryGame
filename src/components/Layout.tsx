@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { GameHeaderProps } from "../types";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { GameHeaderProps, SearchBarData, SearchBarProps } from "../types";
 export { GameHeader, Footer, Header, SearchBar };
 
 function Header() {
@@ -10,35 +10,51 @@ function Header() {
   );
 }
 
-function SearchBar() {
-  const [searchText, setSearchText] = useState<string>("");
-  const [queryRange, setQueryRange] = useState<number>(20);
+function SearchBar({ handleSubmit }: SearchBarProps) {
+  const [searchData, setSearchData] = useState<SearchBarData>({
+    query: "cats",
+    limit: 20,
+  });
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    let newValue: string | number = value;
+    if (name === "limit") {
+      newValue = parseInt(value, 10);
+    }
+    setSearchData({
+      ...searchData,
+      [name]: newValue,
+    });
+  };
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    handleSubmit(searchData);
+  };
   return (
-    <form>
-      <label htmlFor="keyword">Keyword</label>
+    <form onSubmit={onSubmit}>
+      <label htmlFor="query">Keyword</label>
       <input
         type="text"
-        id="keyword"
-        name="keyword"
-        value={searchText}
-        onChange={(event) => {
-          setSearchText(event.target.value);
-        }}
-      ></input>
-
-      <label htmlFor="query">Number of TIles</label>
-      <input
-        type="range"
         id="query"
         name="query"
-        value={queryRange}
-        onChange={(event) => {
-          setQueryRange(parseInt(event.target.value, 10));
-        }}
+        value={searchData.query}
+        onChange={handleChange}
       ></input>
 
-      <button type="button">Sumbit</button>
+      <label htmlFor="limit">Number of Tiles: {searchData.limit}</label>
+      <input
+        type="range"
+        id="limit"
+        name="limit"
+        min="2"
+        max="50"
+        value={searchData.limit}
+        onChange={handleChange}
+      ></input>
+
+      <button type="submit">submit</button>
     </form>
   );
 }
