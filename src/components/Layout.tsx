@@ -4,9 +4,14 @@ export { GameHeader, Footer, Header, SearchBar };
 
 function Header() {
   return (
-    <div className="text-5xl font-mono py-1 w-full text-center bg-zinc-200">
-      Memory!
-    </div>
+    <>
+      <div className="text-5xl font-mono py-1 w-full text-center bg-zinc-200">
+        Memory!
+      </div>
+      <div className="text-sm font-mono w-full bg-zinc-200 text-center">
+        Click on every image, but don't click the same image twice :)
+      </div>
+    </>
   );
 }
 

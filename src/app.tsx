@@ -1,10 +1,9 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardObject, SearchBarData } from "./types";
 import { shuffleCards, getGifs } from "./utils";
 import Card from "./components/Card";
 import { Footer, GameHeader, Header, SearchBar } from "./components/Layout";
 import { GameWon, GameOver } from "./components/GameOver";
-const MAX_CARDS = 20;
 
 export default function App() {
   const [clickedCards, setClickedCards] = useState<string[]>([]);
@@ -14,6 +13,7 @@ export default function App() {
   const [cardArray, setCardArray] = useState<CardObject[]>([]);
   const [searchData, setSearchData] = useState<SearchBarData>();
 
+  const MAX_CARDS = parseInt(searchData?.limit || "20", 10);
   useEffect(() => {
     getGifs(searchData?.query || "cats", searchData?.limit || "20").then(
       (resolvedCardArray: CardObject[]) => {
