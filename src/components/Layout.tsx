@@ -13,7 +13,7 @@ function Header() {
 function SearchBar({ handleSubmit }: SearchBarProps) {
   const [searchData, setSearchData] = useState<SearchBarData>({
     query: "cats",
-    limit: 20,
+    limit: "20",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
