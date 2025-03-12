@@ -12,7 +12,7 @@ function Header() {
 
 function SearchBar({ handleSubmit }: SearchBarProps) {
   const [searchData, setSearchData] = useState<SearchBarData>({
-    query: "cats",
+    query: "",
     limit: "20",
   });
 
@@ -29,29 +29,42 @@ function SearchBar({ handleSubmit }: SearchBarProps) {
     handleSubmit(searchData);
   };
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="query">Keyword</label>
-      <input
-        type="text"
-        id="query"
-        name="query"
-        value={searchData.query}
-        onChange={handleChange}
-      ></input>
+    <div className="w-full flex justify-center bg-zinc-200">
+      <form
+        onSubmit={onSubmit}
+        className="flex justify-around items-center w-full md:w-1/2 lg:w-4/12 py-3"
+      >
+        <input
+          type="text"
+          id="query"
+          name="query"
+          placeholder="Keyword"
+          autoComplete="off"
+          className="bg-zinc-100 rounded-lg w-30 md:w-40 p-1 mx-5 h-8"
+          value={searchData.query}
+          onChange={handleChange}
+        ></input>
 
-      <label htmlFor="limit">Number of Tiles: {searchData.limit}</label>
-      <input
-        type="range"
-        id="limit"
-        name="limit"
-        min="2"
-        max="50"
-        value={searchData.limit}
-        onChange={handleChange}
-      ></input>
-
-      <button type="submit">submit</button>
-    </form>
+        <div className="flex flex-col items-center">
+          <label htmlFor="limit" className="font-semibold font-mono">
+            {searchData.limit} tiles
+          </label>
+          <input
+            type="range"
+            id="limit"
+            name="limit"
+            min="2"
+            max="50"
+            className="w-30 lg:w-45"
+            value={searchData.limit}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <button type="submit">
+          <img src="./magnify.svg" className="w-7" />
+        </button>
+      </form>
+    </div>
   );
 }
 
