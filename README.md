@@ -1,100 +1,74 @@
 # Memory Game
 
 ## Overview
-This project is a simple memory game built with React and TypeScript. The goal of the game is to click on every image without clicking the same image twice. The game fetches GIFs from the Giphy API based on user input.
+This is a memory game built with React and TypeScript. The goal is to click on every image once without clicking the same image twice. The app shuffles images after each click, and the game ends either when you win (by clicking all images once) or lose (by clicking the same image twice).
 (live site)[https://yskim308memory.netlify.app/]
 
----
-
 ## File Structure
+- `App.tsx`: The main component that manages game state and logic.
+- `types.ts`: Contains TypeScript interfaces for props and data structures.
+- `utils.ts`: Utility functions for fetching GIFs and shuffling cards.
+- `main.tsx`: Renders the `App` component to the DOM.
+- `components/`: Contains presentational components such as cards, game status, and layout elements.
 
-### Root Files
+## State Variables
 
-#### `App.tsx`
-This is the main component of the app, responsible for the game's logic and rendering. Key functions include:
+In `App.tsx`, the following state variables are used:
 
-- **onSearchSubmit(data: SearchBarData)**: Updates the search data and resets the game count and clicked cards when the user submits a new search.
-- **onCardClick(card: CardObject)**: Handles what happens when a card is clicked:
-  - If the card was already clicked, it triggers a "Game Over" screen.
-  - If all unique cards are clicked, it triggers a "Game Won" screen.
-  - Otherwise, it shuffles the cards and updates the clicked cards and game count.
-- **useEffect hook**: Fetches GIFs from the Giphy API whenever `searchData` changes.
+- `clickedCards` (`string[]`): Keeps track of the IDs of cards that have been clicked. Used to check if a card has already been clicked.
+- `gameCount` (`number`): Counts the number of cards clicked in the current game session. Used to track progress towards winning the game.
+- `isGameOver` (`boolean`): Flags whether the game is over (when a card is clicked twice).
+- `isGameWon` (`boolean`): Flags whether the player has won the game (when all cards have been clicked exactly once).
+- `cardArray` (`CardObject[]`): Holds the array of card objects currently displayed. Updated when cards are shuffled or new GIFs are fetched.
+- `searchData` (`SearchBarData | undefined`): Stores the query and limit for fetching GIFs. Changes when the user submits the search form.
 
-#### `types.ts`
-Defines the TypeScript interfaces used throughout the app:
-- **CardObject**: Represents a card (GIF) with `url`, `desc`, and `id`.
-- **CardProps**: Props for the `Card` component.
-- **GiphyObject**: Structure of the Giphy API response.
-- **GameHeaderProps**: Props for the `GameHeader` component.
-- **SearchBarData**: Stores search `query` and `limit`.
-- **SearchBarProps**: Props for the `SearchBar` component.
+## Functions
 
-#### `utils.ts`
-Contains utility functions:
-- **getGifs(search: string, gifNumber: string): Promise<CardObject[]>**: Fetches GIFs from the Giphy API or falls back to default data if the API request fails.
-- **processJson(gifs: GiphyObject, cardArray: CardObject[])**: Processes the Giphy API response and populates the `cardArray`.
-- **shuffleCards(cards: CardObject[])**: Implements the Fisher-Yates shuffle algorithm to randomize card order.
+### App.tsx
 
-#### `main.tsx`
-The entry point of the app:
-- Uses React's `createRoot()` to render the `App` component within a `StrictMode` wrapper.
+- `useEffect`: Fetches GIFs based on `searchData` when it changes. Updates `cardArray` with the new set of cards.
+- `onSearchSubmit(data: SearchBarData)`: Updates `searchData`, resets `gameCount` and `clickedCards`, and triggers a new GIF search.
+- `onCardClick(card: CardObject)`: Handles card clicks.
+  - If the card was already clicked (`isClicked`), it sets `isGameOver` to `true` and resets the game.
+  - If the player has clicked all cards once (`gameCount == MAX_CARDS - 1`), it sets `isGameWon` to `true`.
+  - Otherwise, it adds the clicked card to `clickedCards`, increments `gameCount`, and shuffles the cards.
 
----
+### utils.ts
 
-### Components
+- `getGifs(search: string, gifNumber: string)`: Fetches GIFs from Giphy's API based on the search term and limit. Falls back to default data if the API request fails.
+- `processJson(gifs: GiphyObject, cardArray: CardObject[])`: Processes Giphy API response and populates `cardArray` with card objects.
+- `shuffleCards(cards: CardObject[])`: Implements Fisher-Yates shuffle to randomize card order.
 
-#### `Card.tsx`
-Displays individual cards:
-- **handleClick(card: CardObject)**: Called when a card is clicked, passing the card data back to the parent component.
-- **useState for hovered**: Handles hover effects.
+### main.tsx
 
-#### `GameOver.tsx`
-- **GameOver()**: Displays the "Game Over" screen.
-- **GameWon()**: Displays the "Game Won" screen.
+- Renders the `App` component into the root DOM node using React's `createRoot`.
 
-#### `Layout.tsx`
-Contains UI components for the game layout:
+### components/Card.tsx
 
-- **Header()**: Displays the game title and instructions.
-- **SearchBar({ handleSubmit }: SearchBarProps)**: Allows users to input a search query and select the number of cards. Calls `handleSubmit` with the form data.
-- **handleChange(e: ChangeEvent<HTMLInputElement>)**: Updates the search data as users type.
-- **onSubmit(e: FormEvent)**: Prevents the default form submission and passes search data to the parent component.
-- **GameHeader({ count }: GameHeaderProps)**: Displays the current count of correctly clicked cards.
-- **Footer()**: Contains GitHub and LinkedIn links.
+- `Card({ card, handleClick }: CardProps)`: Displays a card with hover effects. Calls `handleClick` when clicked.
 
----
+### components/GameOver.tsx
 
-## How to Run the Project
-1. Install dependencies:
-```bash
-npm install
-```
-2. Start the development server:
-```bash
-npm run dev
-```
-3. Open the app in your browser, usually at `http://localhost:3000`
+- `GameOver()`: Displays a “Game Over” screen when the game is lost.
+- `GameWon()`: Displays a “Game Won” screen when the game is won.
 
----
+### components/Layout.tsx
 
-## Dependencies
-- React
-- TypeScript
-- TailwindCSS
+- `Header()`: Displays the game title and instructions.
+- `SearchBar({ handleSubmit }: SearchBarProps)`: Contains an input field for search terms and a slider to select the number of tiles (cards). Calls `handleSubmit` when the form is submitted.
+- `GameHeader({ count }: GameHeaderProps)`: Displays the current score (number of cards clicked).
+- `Footer()`: Shows GitHub and LinkedIn links.
 
----
+## How to Run
 
-## Features
-- Search for GIFs using the Giphy API
-- Dynamic grid layout for cards
-- Hover effects and animations
-- Victory and defeat screens
-
----
+1. Clone the repo.
+2. Install dependencies: `npm install`
+3. Start the dev server: `npm run dev`
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## Future Improvements
-- Add difficulty levels (adjust number of cards dynamically)
-- Improve mobile responsiveness
-- Optimize API requests with debouncing
+- Add animations for card flips.
+- Display a leaderboard.
+- Improve mobile responsiveness.
 
 ---
