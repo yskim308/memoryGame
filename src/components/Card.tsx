@@ -15,7 +15,7 @@ export default function Card({ card, handleClick }: CardProps) {
       >
         <img
           src={card.url}
-          alt="url is fucked?"
+          alt="unable to fetch image"
           className="rounded-3xl w-full h-full"
         />
       </div>
