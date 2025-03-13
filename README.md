@@ -2,7 +2,7 @@
 
 ## Overview
 This is a memory game built with React and TypeScript. The goal is to click on every image once without clicking the same image twice. The app shuffles images after each click, and the game ends either when you win (by clicking all images once) or lose (by clicking the same image twice).
-(live site)[https://yskim308memory.netlify.app/]
+[live site](https://yskim308memory.netlify.app/)
 
 ## File Structure
 - `App.tsx`: The main component that manages game state and logic.
