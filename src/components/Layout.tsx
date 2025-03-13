@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { GameHeaderProps, SearchBarData, SearchBarProps } from "../types";
 export { GameHeader, Footer, Header, SearchBar };
 
